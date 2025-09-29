@@ -1,9 +1,9 @@
 name: uikit_bindings
 description: "Bindings of UIKit components for Flutter using FFI."
-version: 0.0.1-dev.0
-homepage: https://github.com/orestesgaolin/uikit-bindings
-repository: https://github.com/orestesgaolin/uikit-bindings
-issue_tracker: https://github.com/orestesgaolin/uikit-bindings/issues
+version: 0.0.1-dev.1
+homepage: https://github.com/orestesgaolin/uikit_bindings
+repository: https://github.com/orestesgaolin/uikit_bindings
+issue_tracker: https://github.com/orestesgaolin/uikit_bindings/issues
 
 platforms:
   ios:
