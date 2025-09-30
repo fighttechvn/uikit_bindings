@@ -1,9 +1,3 @@
-// The author disclaims copyright to this source code.  In place of
-// a legal notice, here is a blessing:
-//
-//    May you do good and not evil.
-//    May you find forgiveness for yourself and forgive others.
-//    May you share freely, never taking more than you give.
 // ignore_for_file: unused_element, unused_field, return_of_invalid_type
 
 // AUTO GENERATED FILE, DO NOT EDIT.
@@ -10405,6 +10399,15 @@ class UINavigationController extends UIViewController {
   static bool isInstance(objc.ObjCObjectBase obj) {
     return _objc_msgSend_19nvye5(obj.ref.pointer, _sel_isKindOfClass_, _class_UINavigationController);
   }
+
+   /// new
+  static UINavigationController new$() {
+    final _ret = _objc_msgSend_151sglz(_class_UINavigationController, _sel_new);
+    return UINavigationController.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// Returns a new instance of UINavigationController constructed with the default `new` method.
+  factory UINavigationController() => new$();
 }
 
 extension UINavigationController$Methods on UINavigationController {
