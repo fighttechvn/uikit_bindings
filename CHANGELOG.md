@@ -1,3 +1,7 @@
+## 0.0.1-dev.3
+
+- Updated README.md
+
 ## 0.0.1-dev.2
 
 - Added auto layout classes (NSLayoutConstraint) and example view using auto layout.
