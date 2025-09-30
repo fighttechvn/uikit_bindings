@@ -8,6 +8,17 @@ Bindings are generated from UIKit Headers using ffigen.
 
 This is experimental plugin and currently only limited number of components are supported.
 
+### Helper Functions
+
+The library also provides several helper functions and extensions:
+
+| Function/Extension                | Description                        |
+| --------------------------------- | ---------------------------------- |
+| `UIKitColorExtension.toUIColor()` | Convert Flutter Color to UIColor   |
+| `createCGRect()`                  | Helper to create CGRect structures |
+| `createCGSize()`                  | Helper to create CGSize structures |
+
+
 ## Regenerating bindings
 
 This project uses Dart-API to use ffigen. To regenerate the bindings, run:
