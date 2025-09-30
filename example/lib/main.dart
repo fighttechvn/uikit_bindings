@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:objective_c/objective_c.dart';
 
 import 'package:uikit_bindings/uikit.dart';
+import 'package:uikit_example/auto_layout_page.dart';
 
 void main() {
   runApp(MaterialApp(home: const MyApp()));
@@ -61,6 +63,7 @@ class _MyAppState extends State<MyApp> {
       final completion = ObjCBlock_ffiVoid.listener(() {
         print('completed');
       });
+
       final newViewController = UIViewController();
       final view = UIView();
       final size = MediaQuery.of(context).size;
@@ -99,6 +102,7 @@ class _MyAppState extends State<MyApp> {
         child: Container(
           padding: const EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ElevatedButton(
                 onPressed: showAlert,
@@ -107,6 +111,12 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: showViewController,
                 child: const Text('Show View Controller'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showAutoLayoutViewController();
+                },
+                child: const Text('Show Auto Layout Example'),
               ),
             ],
           ),

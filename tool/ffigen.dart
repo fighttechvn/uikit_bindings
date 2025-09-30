@@ -11,6 +11,8 @@ void main() {
     headers: Headers(
       entryPoints: [
         packageRoot.resolve("Headers/NSToolbar+UIKitAdditions.h"),
+        packageRoot.resolve("Headers/NSLayoutConstraint.h"),
+        packageRoot.resolve("Headers/NSLayoutAnchor.h"),
         packageRoot.resolve("Headers/UIAlertController.h"),
         packageRoot.resolve("Headers/UIApplication.h"),
         packageRoot.resolve("Headers/UIBarButtonItem.h"),
@@ -39,6 +41,7 @@ void main() {
       interfaces: Interfaces(
         include: (decl) {
           return [
+            "NSLayoutConstraint",
             "UIAlertAction",
             "UIAlertController",
             "UIApplication",
@@ -60,6 +63,7 @@ void main() {
             "UISwitch",
             "UITitlebar",
             "UIViewController",
+            "UIScreen",
             "UIWindow",
           ].contains(decl.originalName);
         },
@@ -83,7 +87,18 @@ void main() {
 ''',
     ),
   );
+
   generator.generate(
     logger: Logger('')..onRecord.listen((record) => print(record.message)),
   );
+
+  // replace relative header imports with one #import <UIKit/UIKit.h>
+  final objcFile = packageRoot.resolve('ios/Classes/uikit_bindings.m');
+  var content = File(objcFile.toFilePath()).readAsStringSync();
+  content = content.replaceAllMapped(
+    RegExp(r'#import "(.*\.h)"\n'),
+    (match) => '',
+  );
+  content = '#import <UIKit/UIKit.h>\n' + content;
+  File(objcFile.toFilePath()).writeAsStringSync(content);
 }

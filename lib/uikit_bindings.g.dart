@@ -3341,10 +3341,8 @@ late final _sel_windowScene = objc.registerName("windowScene");
 late final _sel_setWindowScene_ = objc.registerName("setWindowScene:");
 late final _sel_canResizeToFitContent = objc.registerName("canResizeToFitContent");
 late final _sel_setCanResizeToFitContent_ = objc.registerName("setCanResizeToFitContent:");
+late final _class_UIScreen = objc.getClass("UIScreen");
 
-/// WARNING: UIScreen is a stub. To generate bindings for this class, include
-/// UIScreen in your config's objc-interfaces list.
-///
 /// UIScreen
 class UIScreen extends objc.ObjCObjectBase {
   UIScreen._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
@@ -3356,7 +3354,14 @@ class UIScreen extends objc.ObjCObjectBase {
   /// Constructs a [UIScreen] that wraps the given raw object pointer.
   UIScreen.castFromPointer(ffi.Pointer<objc.ObjCObject> other, {bool retain = false, bool release = false})
     : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [UIScreen].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_19nvye5(obj.ref.pointer, _sel_isKindOfClass_, _class_UIScreen);
+  }
 }
+
+extension UIScreen$Methods on UIScreen {}
 
 late final _sel_screen = objc.registerName("screen");
 late final _sel_setScreen_ = objc.registerName("setScreen:");
@@ -10400,7 +10405,7 @@ class UINavigationController extends UIViewController {
     return _objc_msgSend_19nvye5(obj.ref.pointer, _sel_isKindOfClass_, _class_UINavigationController);
   }
 
-   /// new
+  /// new
   static UINavigationController new$() {
     final _ret = _objc_msgSend_151sglz(_class_UINavigationController, _sel_new);
     return UINavigationController.castFromPointer(_ret, retain: false, release: true);
@@ -17708,10 +17713,251 @@ extension UIViewMotionEffects on UIView {
 }
 
 late final _sel_constraints = objc.registerName("constraints");
+late final _class_NSLayoutConstraint = objc.getClass("NSLayoutConstraint");
+late final _sel_setIdentifier_ = objc.registerName("setIdentifier:");
 
-/// WARNING: NSLayoutConstraint is a stub. To generate bindings for this class, include
-/// NSLayoutConstraint in your config's objc-interfaces list.
+/// NSIdentifier
+extension NSIdentifier on NSLayoutConstraint {
+  /// identifier
+  objc.NSString? get identifier {
+    objc.checkOsVersionInternal('NSLayoutConstraint.identifier', iOS: (false, (7, 0, 0)), macOS: (false, (10, 7, 0)));
+    final _ret = _objc_msgSend_151sglz(this.ref.pointer, _sel_identifier);
+    return _ret.address == 0 ? null : objc.NSString.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setIdentifier:
+  set identifier(objc.NSString? value) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.setIdentifier:',
+      iOS: (false, (7, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    _objc_msgSend_xtuoz7(this.ref.pointer, _sel_setIdentifier_, value?.ref.pointer ?? ffi.nullptr);
+  }
+}
+
+enum NSLayoutFormatOptions {
+  NSLayoutFormatAlignAllLeft(2),
+  NSLayoutFormatAlignAllRight(4),
+  NSLayoutFormatAlignAllTop(8),
+  NSLayoutFormatAlignAllBottom(16),
+  NSLayoutFormatAlignAllLeading(32),
+  NSLayoutFormatAlignAllTrailing(64),
+  NSLayoutFormatAlignAllCenterX(512),
+  NSLayoutFormatAlignAllCenterY(1024),
+  NSLayoutFormatAlignAllLastBaseline(2048),
+  NSLayoutFormatAlignAllFirstBaseline(4096),
+  NSLayoutFormatAlignmentMask(65535),
+  NSLayoutFormatDirectionLeadingToTrailing(0),
+  NSLayoutFormatDirectionLeftToRight(65536),
+  NSLayoutFormatDirectionRightToLeft(131072),
+  NSLayoutFormatDirectionMask(196608);
+
+  static const NSLayoutFormatAlignAllBaseline = NSLayoutFormatAlignAllLastBaseline;
+
+  final int value;
+  const NSLayoutFormatOptions(this.value);
+
+  static NSLayoutFormatOptions fromValue(int value) => switch (value) {
+    2 => NSLayoutFormatAlignAllLeft,
+    4 => NSLayoutFormatAlignAllRight,
+    8 => NSLayoutFormatAlignAllTop,
+    16 => NSLayoutFormatAlignAllBottom,
+    32 => NSLayoutFormatAlignAllLeading,
+    64 => NSLayoutFormatAlignAllTrailing,
+    512 => NSLayoutFormatAlignAllCenterX,
+    1024 => NSLayoutFormatAlignAllCenterY,
+    2048 => NSLayoutFormatAlignAllLastBaseline,
+    4096 => NSLayoutFormatAlignAllFirstBaseline,
+    65535 => NSLayoutFormatAlignmentMask,
+    0 => NSLayoutFormatDirectionLeadingToTrailing,
+    65536 => NSLayoutFormatDirectionLeftToRight,
+    131072 => NSLayoutFormatDirectionRightToLeft,
+    196608 => NSLayoutFormatDirectionMask,
+    _ => throw ArgumentError('Unknown value for NSLayoutFormatOptions: $value'),
+  };
+
+  @override
+  String toString() {
+    if (this == NSLayoutFormatAlignAllLastBaseline)
+      return "NSLayoutFormatOptions.NSLayoutFormatAlignAllLastBaseline, NSLayoutFormatOptions.NSLayoutFormatAlignAllBaseline";
+    return super.toString();
+  }
+}
+
+late final _sel_constraintsWithVisualFormat_options_metrics_views_ = objc.registerName(
+  "constraintsWithVisualFormat:options:metrics:views:",
+);
+final _objc_msgSend_1i24u6t = objc.msgSendPointer
+    .cast<
+      ffi.NativeFunction<
+        ffi.Pointer<objc.ObjCObject> Function(
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Pointer<objc.ObjCSelector>,
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.UnsignedLong,
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Pointer<objc.ObjCObject>,
+        )
+      >
+    >()
+    .asFunction<
+      ffi.Pointer<objc.ObjCObject> Function(
+        ffi.Pointer<objc.ObjCObject>,
+        ffi.Pointer<objc.ObjCSelector>,
+        ffi.Pointer<objc.ObjCObject>,
+        int,
+        ffi.Pointer<objc.ObjCObject>,
+        ffi.Pointer<objc.ObjCObject>,
+      )
+    >();
+
+enum NSLayoutAttribute {
+  NSLayoutAttributeLeft(1),
+  NSLayoutAttributeRight(2),
+  NSLayoutAttributeTop(3),
+  NSLayoutAttributeBottom(4),
+  NSLayoutAttributeLeading(5),
+  NSLayoutAttributeTrailing(6),
+  NSLayoutAttributeWidth(7),
+  NSLayoutAttributeHeight(8),
+  NSLayoutAttributeCenterX(9),
+  NSLayoutAttributeCenterY(10),
+  NSLayoutAttributeLastBaseline(11),
+  NSLayoutAttributeFirstBaseline(12),
+  NSLayoutAttributeNotAnAttribute(0);
+
+  static const NSLayoutAttributeBaseline = NSLayoutAttributeLastBaseline;
+
+  final int value;
+  const NSLayoutAttribute(this.value);
+
+  static NSLayoutAttribute fromValue(int value) => switch (value) {
+    1 => NSLayoutAttributeLeft,
+    2 => NSLayoutAttributeRight,
+    3 => NSLayoutAttributeTop,
+    4 => NSLayoutAttributeBottom,
+    5 => NSLayoutAttributeLeading,
+    6 => NSLayoutAttributeTrailing,
+    7 => NSLayoutAttributeWidth,
+    8 => NSLayoutAttributeHeight,
+    9 => NSLayoutAttributeCenterX,
+    10 => NSLayoutAttributeCenterY,
+    11 => NSLayoutAttributeLastBaseline,
+    12 => NSLayoutAttributeFirstBaseline,
+    0 => NSLayoutAttributeNotAnAttribute,
+    _ => throw ArgumentError('Unknown value for NSLayoutAttribute: $value'),
+  };
+
+  @override
+  String toString() {
+    if (this == NSLayoutAttributeLastBaseline)
+      return "NSLayoutAttribute.NSLayoutAttributeLastBaseline, NSLayoutAttribute.NSLayoutAttributeBaseline";
+    return super.toString();
+  }
+}
+
+enum NSLayoutRelation {
+  NSLayoutRelationLessThanOrEqual(-1),
+  NSLayoutRelationEqual(0),
+  NSLayoutRelationGreaterThanOrEqual(1);
+
+  final int value;
+  const NSLayoutRelation(this.value);
+
+  static NSLayoutRelation fromValue(int value) => switch (value) {
+    -1 => NSLayoutRelationLessThanOrEqual,
+    0 => NSLayoutRelationEqual,
+    1 => NSLayoutRelationGreaterThanOrEqual,
+    _ => throw ArgumentError('Unknown value for NSLayoutRelation: $value'),
+  };
+}
+
+late final _sel_constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant_ = objc.registerName(
+  "constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:",
+);
+final _objc_msgSend_1h0kas2 = objc.msgSendPointer
+    .cast<
+      ffi.NativeFunction<
+        ffi.Pointer<objc.ObjCObject> Function(
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Pointer<objc.ObjCSelector>,
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Long,
+          ffi.Long,
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Long,
+          ffi.Double,
+          ffi.Double,
+        )
+      >
+    >()
+    .asFunction<
+      ffi.Pointer<objc.ObjCObject> Function(
+        ffi.Pointer<objc.ObjCObject>,
+        ffi.Pointer<objc.ObjCSelector>,
+        ffi.Pointer<objc.ObjCObject>,
+        int,
+        int,
+        ffi.Pointer<objc.ObjCObject>,
+        int,
+        double,
+        double,
+      )
+    >();
+late final _sel_priority = objc.registerName("priority");
+final _objc_msgSend_2cgrxl = objc.msgSendPointer
+    .cast<ffi.NativeFunction<ffi.Float Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<double Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+final _objc_msgSend_2cgrxlFpret = objc.msgSendFpretPointer
+    .cast<ffi.NativeFunction<ffi.Float Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<double Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+late final _sel_setPriority_ = objc.registerName("setPriority:");
+final _objc_msgSend_v5hmet = objc.msgSendPointer
+    .cast<
+      ffi.NativeFunction<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>, ffi.Float)>
+    >()
+    .asFunction<void Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>, double)>();
+late final _sel_shouldBeArchived = objc.registerName("shouldBeArchived");
+late final _sel_setShouldBeArchived_ = objc.registerName("setShouldBeArchived:");
+late final _sel_firstItem = objc.registerName("firstItem");
+late final _sel_secondItem = objc.registerName("secondItem");
+late final _sel_firstAttribute = objc.registerName("firstAttribute");
+final _objc_msgSend_ynhelg = objc.msgSendPointer
+    .cast<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<int Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+late final _sel_secondAttribute = objc.registerName("secondAttribute");
+
+/// WARNING: NSLayoutAnchor is a stub. To generate bindings for this class, include
+/// NSLayoutAnchor in your config's objc-interfaces list.
 ///
+/// NSLayoutAnchor
+class NSLayoutAnchor extends objc.NSObject implements objc.NSCopying, objc.NSCoding {
+  NSLayoutAnchor._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
+    : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [NSLayoutAnchor] that points to the same underlying object as [other].
+  NSLayoutAnchor.castFrom(objc.ObjCObjectBase other) : this._(other.ref.pointer, retain: true, release: true);
+
+  /// Constructs a [NSLayoutAnchor] that wraps the given raw object pointer.
+  NSLayoutAnchor.castFromPointer(ffi.Pointer<objc.ObjCObject> other, {bool retain = false, bool release = false})
+    : this._(other, retain: retain, release: release);
+}
+
+late final _sel_firstAnchor = objc.registerName("firstAnchor");
+late final _sel_secondAnchor = objc.registerName("secondAnchor");
+late final _sel_relation = objc.registerName("relation");
+final _objc_msgSend_utwjq8 = objc.msgSendPointer
+    .cast<ffi.NativeFunction<ffi.Long Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<int Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+late final _sel_multiplier = objc.registerName("multiplier");
+late final _sel_constant = objc.registerName("constant");
+late final _sel_setConstant_ = objc.registerName("setConstant:");
+late final _sel_isActive = objc.registerName("isActive");
+late final _sel_setActive_ = objc.registerName("setActive:");
+late final _sel_activateConstraints_ = objc.registerName("activateConstraints:");
+late final _sel_deactivateConstraints_ = objc.registerName("deactivateConstraints:");
+
 /// NSLayoutConstraint
 class NSLayoutConstraint extends objc.NSObject {
   NSLayoutConstraint._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
@@ -17725,6 +17971,246 @@ class NSLayoutConstraint extends objc.NSObject {
   /// Constructs a [NSLayoutConstraint] that wraps the given raw object pointer.
   NSLayoutConstraint.castFromPointer(ffi.Pointer<objc.ObjCObject> other, {bool retain = false, bool release = false})
     : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [NSLayoutConstraint].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_19nvye5(obj.ref.pointer, _sel_isKindOfClass_, _class_NSLayoutConstraint);
+  }
+
+  /// constraintsWithVisualFormat:options:metrics:views:
+  static objc.NSArray constraintsWithVisualFormat(
+    objc.NSString format, {
+    required NSLayoutFormatOptions options,
+    objc.NSDictionary? metrics,
+    required objc.NSDictionary views,
+  }) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.constraintsWithVisualFormat:options:metrics:views:',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    final _ret = _objc_msgSend_1i24u6t(
+      _class_NSLayoutConstraint,
+      _sel_constraintsWithVisualFormat_options_metrics_views_,
+      format.ref.pointer,
+      options.value,
+      metrics?.ref.pointer ?? ffi.nullptr,
+      views.ref.pointer,
+    );
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:
+  static NSLayoutConstraint constraintWithItem(
+    objc.ObjCObjectBase view1, {
+    required NSLayoutAttribute attribute,
+    required NSLayoutRelation relatedBy,
+    objc.ObjCObjectBase? toItem,
+    required NSLayoutAttribute attribute$1,
+    required double multiplier,
+    required double constant,
+  }) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    final _ret = _objc_msgSend_1h0kas2(
+      _class_NSLayoutConstraint,
+      _sel_constraintWithItem_attribute_relatedBy_toItem_attribute_multiplier_constant_,
+      view1.ref.pointer,
+      attribute.value,
+      relatedBy.value,
+      toItem?.ref.pointer ?? ffi.nullptr,
+      attribute$1.value,
+      multiplier,
+      constant,
+    );
+    return NSLayoutConstraint.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// activateConstraints:
+  static void activateConstraints(objc.NSArray constraints) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.activateConstraints:',
+      iOS: (false, (8, 0, 0)),
+      macOS: (false, (10, 10, 0)),
+    );
+    _objc_msgSend_xtuoz7(_class_NSLayoutConstraint, _sel_activateConstraints_, constraints.ref.pointer);
+  }
+
+  /// deactivateConstraints:
+  static void deactivateConstraints(objc.NSArray constraints) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.deactivateConstraints:',
+      iOS: (false, (8, 0, 0)),
+      macOS: (false, (10, 10, 0)),
+    );
+    _objc_msgSend_xtuoz7(_class_NSLayoutConstraint, _sel_deactivateConstraints_, constraints.ref.pointer);
+  }
+
+  /// new
+  static NSLayoutConstraint new$() {
+    final _ret = _objc_msgSend_151sglz(_class_NSLayoutConstraint, _sel_new);
+    return NSLayoutConstraint.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static NSLayoutConstraint allocWithZone(ffi.Pointer<objc.NSZone> zone) {
+    final _ret = _objc_msgSend_1cwp428(_class_NSLayoutConstraint, _sel_allocWithZone_, zone);
+    return NSLayoutConstraint.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// alloc
+  static NSLayoutConstraint alloc() {
+    final _ret = _objc_msgSend_151sglz(_class_NSLayoutConstraint, _sel_alloc);
+    return NSLayoutConstraint.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// Returns a new instance of NSLayoutConstraint constructed with the default `new` method.
+  factory NSLayoutConstraint() => new$();
+}
+
+extension NSLayoutConstraint$Methods on NSLayoutConstraint {
+  /// priority
+  double get priority {
+    objc.checkOsVersionInternal('NSLayoutConstraint.priority', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    return objc.useMsgSendVariants
+        ? _objc_msgSend_2cgrxlFpret(this.ref.pointer, _sel_priority)
+        : _objc_msgSend_2cgrxl(this.ref.pointer, _sel_priority);
+  }
+
+  /// setPriority:
+  set priority(double value) {
+    objc.checkOsVersionInternal('NSLayoutConstraint.setPriority:', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    _objc_msgSend_v5hmet(this.ref.pointer, _sel_setPriority_, value);
+  }
+
+  /// shouldBeArchived
+  bool get shouldBeArchived {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.shouldBeArchived',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    return _objc_msgSend_91o635(this.ref.pointer, _sel_shouldBeArchived);
+  }
+
+  /// setShouldBeArchived:
+  set shouldBeArchived(bool value) {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.setShouldBeArchived:',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    _objc_msgSend_1s56lr9(this.ref.pointer, _sel_setShouldBeArchived_, value);
+  }
+
+  /// firstItem
+  objc.ObjCObjectBase? get firstItem {
+    objc.checkOsVersionInternal('NSLayoutConstraint.firstItem', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    final _ret = _objc_msgSend_151sglz(this.ref.pointer, _sel_firstItem);
+    return _ret.address == 0 ? null : objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+
+  /// secondItem
+  objc.ObjCObjectBase? get secondItem {
+    objc.checkOsVersionInternal('NSLayoutConstraint.secondItem', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    final _ret = _objc_msgSend_151sglz(this.ref.pointer, _sel_secondItem);
+    return _ret.address == 0 ? null : objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+
+  /// firstAttribute
+  NSLayoutAttribute get firstAttribute {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.firstAttribute',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    final _ret = _objc_msgSend_ynhelg(this.ref.pointer, _sel_firstAttribute);
+    return NSLayoutAttribute.fromValue(_ret);
+  }
+
+  /// secondAttribute
+  NSLayoutAttribute get secondAttribute {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.secondAttribute',
+      iOS: (false, (6, 0, 0)),
+      macOS: (false, (10, 7, 0)),
+    );
+    final _ret = _objc_msgSend_ynhelg(this.ref.pointer, _sel_secondAttribute);
+    return NSLayoutAttribute.fromValue(_ret);
+  }
+
+  /// firstAnchor
+  NSLayoutAnchor get firstAnchor {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.firstAnchor',
+      iOS: (false, (10, 0, 0)),
+      macOS: (false, (10, 12, 0)),
+    );
+    final _ret = _objc_msgSend_151sglz(this.ref.pointer, _sel_firstAnchor);
+    return NSLayoutAnchor.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// secondAnchor
+  NSLayoutAnchor? get secondAnchor {
+    objc.checkOsVersionInternal(
+      'NSLayoutConstraint.secondAnchor',
+      iOS: (false, (10, 0, 0)),
+      macOS: (false, (10, 12, 0)),
+    );
+    final _ret = _objc_msgSend_151sglz(this.ref.pointer, _sel_secondAnchor);
+    return _ret.address == 0 ? null : NSLayoutAnchor.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// relation
+  NSLayoutRelation get relation {
+    objc.checkOsVersionInternal('NSLayoutConstraint.relation', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    final _ret = _objc_msgSend_utwjq8(this.ref.pointer, _sel_relation);
+    return NSLayoutRelation.fromValue(_ret);
+  }
+
+  /// multiplier
+  double get multiplier {
+    objc.checkOsVersionInternal('NSLayoutConstraint.multiplier', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    return objc.useMsgSendVariants
+        ? _objc_msgSend_1ukqyt8Fpret(this.ref.pointer, _sel_multiplier)
+        : _objc_msgSend_1ukqyt8(this.ref.pointer, _sel_multiplier);
+  }
+
+  /// constant
+  double get constant {
+    objc.checkOsVersionInternal('NSLayoutConstraint.constant', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    return objc.useMsgSendVariants
+        ? _objc_msgSend_1ukqyt8Fpret(this.ref.pointer, _sel_constant)
+        : _objc_msgSend_1ukqyt8(this.ref.pointer, _sel_constant);
+  }
+
+  /// setConstant:
+  set constant(double value) {
+    objc.checkOsVersionInternal('NSLayoutConstraint.setConstant:', iOS: (false, (6, 0, 0)), macOS: (false, (10, 7, 0)));
+    _objc_msgSend_hwm8nu(this.ref.pointer, _sel_setConstant_, value);
+  }
+
+  /// isActive
+  bool get active {
+    objc.checkOsVersionInternal('NSLayoutConstraint.isActive', iOS: (false, (8, 0, 0)), macOS: (false, (10, 10, 0)));
+    return _objc_msgSend_91o635(this.ref.pointer, _sel_isActive);
+  }
+
+  /// setActive:
+  set active(bool value) {
+    objc.checkOsVersionInternal('NSLayoutConstraint.setActive:', iOS: (false, (8, 0, 0)), macOS: (false, (10, 10, 0)));
+    _objc_msgSend_1s56lr9(this.ref.pointer, _sel_setActive_, value);
+  }
+
+  /// init
+  NSLayoutConstraint init() {
+    objc.checkOsVersionInternal('NSLayoutConstraint.init', iOS: (false, (2, 0, 0)), macOS: (false, (10, 0, 0)));
+    final _ret = _objc_msgSend_151sglz(this.ref.retainAndReturnPointer(), _sel_init);
+    return NSLayoutConstraint.castFromPointer(_ret, retain: false, release: true);
+  }
 }
 
 late final _sel_addConstraint_ = objc.registerName("addConstraint:");
@@ -18140,9 +18626,9 @@ extension UILayoutGuideSupport on UIView {
 /// NSLayoutXAxisAnchor in your config's objc-interfaces list.
 ///
 /// NSLayoutXAxisAnchor
-class NSLayoutXAxisAnchor extends objc.ObjCObjectBase {
+class NSLayoutXAxisAnchor extends NSLayoutAnchor {
   NSLayoutXAxisAnchor._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
-    : super(pointer, retain: retain, release: release);
+    : super.castFromPointer(pointer, retain: retain, release: release);
 
   /// Constructs a [NSLayoutXAxisAnchor] that points to the same underlying object as [other].
   NSLayoutXAxisAnchor.castFrom(objc.ObjCObjectBase other) : this._(other.ref.pointer, retain: true, release: true);
@@ -18161,9 +18647,9 @@ late final _sel_rightAnchor = objc.registerName("rightAnchor");
 /// NSLayoutYAxisAnchor in your config's objc-interfaces list.
 ///
 /// NSLayoutYAxisAnchor
-class NSLayoutYAxisAnchor extends objc.ObjCObjectBase {
+class NSLayoutYAxisAnchor extends NSLayoutAnchor {
   NSLayoutYAxisAnchor._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
-    : super(pointer, retain: retain, release: release);
+    : super.castFromPointer(pointer, retain: retain, release: release);
 
   /// Constructs a [NSLayoutYAxisAnchor] that points to the same underlying object as [other].
   NSLayoutYAxisAnchor.castFrom(objc.ObjCObjectBase other) : this._(other.ref.pointer, retain: true, release: true);
@@ -18180,9 +18666,9 @@ late final _sel_bottomAnchor = objc.registerName("bottomAnchor");
 /// NSLayoutDimension in your config's objc-interfaces list.
 ///
 /// NSLayoutDimension
-class NSLayoutDimension extends objc.ObjCObjectBase {
+class NSLayoutDimension extends NSLayoutAnchor {
   NSLayoutDimension._(ffi.Pointer<objc.ObjCObject> pointer, {bool retain = false, bool release = false})
-    : super(pointer, retain: retain, release: release);
+    : super.castFromPointer(pointer, retain: retain, release: release);
 
   /// Constructs a [NSLayoutDimension] that points to the same underlying object as [other].
   NSLayoutDimension.castFrom(objc.ObjCObjectBase other) : this._(other.ref.pointer, retain: true, release: true);
@@ -18479,11 +18965,6 @@ final _objc_msgSend_up32gn = objc.msgSendPointer
     >()
     .asFunction<void Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_setAnimationRepeatCount_ = objc.registerName("setAnimationRepeatCount:");
-final _objc_msgSend_v5hmet = objc.msgSendPointer
-    .cast<
-      ffi.NativeFunction<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>, ffi.Float)>
-    >()
-    .asFunction<void Function(ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>, double)>();
 late final _sel_setAnimationRepeatAutoreverses_ = objc.registerName("setAnimationRepeatAutoreverses:");
 late final _sel_setAnimationBeginsFromCurrentState_ = objc.registerName("setAnimationBeginsFromCurrentState:");
 
@@ -23707,116 +24188,6 @@ enum CAConstraintAttribute {
     7 => kCAConstraintHeight,
     _ => throw ArgumentError('Unknown value for CAConstraintAttribute: $value'),
   };
-}
-
-enum NSLayoutRelation {
-  NSLayoutRelationLessThanOrEqual(-1),
-  NSLayoutRelationEqual(0),
-  NSLayoutRelationGreaterThanOrEqual(1);
-
-  final int value;
-  const NSLayoutRelation(this.value);
-
-  static NSLayoutRelation fromValue(int value) => switch (value) {
-    -1 => NSLayoutRelationLessThanOrEqual,
-    0 => NSLayoutRelationEqual,
-    1 => NSLayoutRelationGreaterThanOrEqual,
-    _ => throw ArgumentError('Unknown value for NSLayoutRelation: $value'),
-  };
-}
-
-enum NSLayoutAttribute {
-  NSLayoutAttributeLeft(1),
-  NSLayoutAttributeRight(2),
-  NSLayoutAttributeTop(3),
-  NSLayoutAttributeBottom(4),
-  NSLayoutAttributeLeading(5),
-  NSLayoutAttributeTrailing(6),
-  NSLayoutAttributeWidth(7),
-  NSLayoutAttributeHeight(8),
-  NSLayoutAttributeCenterX(9),
-  NSLayoutAttributeCenterY(10),
-  NSLayoutAttributeLastBaseline(11),
-  NSLayoutAttributeFirstBaseline(12),
-  NSLayoutAttributeNotAnAttribute(0);
-
-  static const NSLayoutAttributeBaseline = NSLayoutAttributeLastBaseline;
-
-  final int value;
-  const NSLayoutAttribute(this.value);
-
-  static NSLayoutAttribute fromValue(int value) => switch (value) {
-    1 => NSLayoutAttributeLeft,
-    2 => NSLayoutAttributeRight,
-    3 => NSLayoutAttributeTop,
-    4 => NSLayoutAttributeBottom,
-    5 => NSLayoutAttributeLeading,
-    6 => NSLayoutAttributeTrailing,
-    7 => NSLayoutAttributeWidth,
-    8 => NSLayoutAttributeHeight,
-    9 => NSLayoutAttributeCenterX,
-    10 => NSLayoutAttributeCenterY,
-    11 => NSLayoutAttributeLastBaseline,
-    12 => NSLayoutAttributeFirstBaseline,
-    0 => NSLayoutAttributeNotAnAttribute,
-    _ => throw ArgumentError('Unknown value for NSLayoutAttribute: $value'),
-  };
-
-  @override
-  String toString() {
-    if (this == NSLayoutAttributeLastBaseline)
-      return "NSLayoutAttribute.NSLayoutAttributeLastBaseline, NSLayoutAttribute.NSLayoutAttributeBaseline";
-    return super.toString();
-  }
-}
-
-enum NSLayoutFormatOptions {
-  NSLayoutFormatAlignAllLeft(2),
-  NSLayoutFormatAlignAllRight(4),
-  NSLayoutFormatAlignAllTop(8),
-  NSLayoutFormatAlignAllBottom(16),
-  NSLayoutFormatAlignAllLeading(32),
-  NSLayoutFormatAlignAllTrailing(64),
-  NSLayoutFormatAlignAllCenterX(512),
-  NSLayoutFormatAlignAllCenterY(1024),
-  NSLayoutFormatAlignAllLastBaseline(2048),
-  NSLayoutFormatAlignAllFirstBaseline(4096),
-  NSLayoutFormatAlignmentMask(65535),
-  NSLayoutFormatDirectionLeadingToTrailing(0),
-  NSLayoutFormatDirectionLeftToRight(65536),
-  NSLayoutFormatDirectionRightToLeft(131072),
-  NSLayoutFormatDirectionMask(196608);
-
-  static const NSLayoutFormatAlignAllBaseline = NSLayoutFormatAlignAllLastBaseline;
-
-  final int value;
-  const NSLayoutFormatOptions(this.value);
-
-  static NSLayoutFormatOptions fromValue(int value) => switch (value) {
-    2 => NSLayoutFormatAlignAllLeft,
-    4 => NSLayoutFormatAlignAllRight,
-    8 => NSLayoutFormatAlignAllTop,
-    16 => NSLayoutFormatAlignAllBottom,
-    32 => NSLayoutFormatAlignAllLeading,
-    64 => NSLayoutFormatAlignAllTrailing,
-    512 => NSLayoutFormatAlignAllCenterX,
-    1024 => NSLayoutFormatAlignAllCenterY,
-    2048 => NSLayoutFormatAlignAllLastBaseline,
-    4096 => NSLayoutFormatAlignAllFirstBaseline,
-    65535 => NSLayoutFormatAlignmentMask,
-    0 => NSLayoutFormatDirectionLeadingToTrailing,
-    65536 => NSLayoutFormatDirectionLeftToRight,
-    131072 => NSLayoutFormatDirectionRightToLeft,
-    196608 => NSLayoutFormatDirectionMask,
-    _ => throw ArgumentError('Unknown value for NSLayoutFormatOptions: $value'),
-  };
-
-  @override
-  String toString() {
-    if (this == NSLayoutFormatAlignAllLastBaseline)
-      return "NSLayoutFormatOptions.NSLayoutFormatAlignAllLastBaseline, NSLayoutFormatOptions.NSLayoutFormatAlignAllBaseline";
-    return super.toString();
-  }
 }
 
 enum UITouchPhase {
